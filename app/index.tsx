@@ -46,7 +46,7 @@ export default function Index() {
       <StatusBar />
       <View className="w-full h-5 flex flex-row items-center justify-center gap-2">
         {stages.map((_, index) =>
-          index >= stage ? (
+          index <= stage ? (
             <View
               key={index}
               className="size-3 w-7 bg-primary-default rounded-full rounded-r-none last-of-type:rounded-r-full"
