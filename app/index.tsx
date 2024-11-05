@@ -1,52 +1,81 @@
-import { Image, Pressable, StatusBar, Text, View } from "react-native";
+import React, { useRef, useState } from "react";
+import { ScrollView, StatusBar, useWindowDimensions, View } from "react-native";
 
-import logo from "@/assets/images/illustration/auth.png";
-import { Href, router } from "expo-router";
+import { Slide } from "@/components/Slide";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+import slideImageOne from "@/assets/images/illustration/stageOneImg.png";
+import slideImageTwo from "@/assets/images/illustration/stageTwoImg.png";
+import slideImageThree from "@/assets/images/illustration/stageThreeImg.png";
+
+const stages = [
+  {
+    highlightedTitle: "Learn live",
+    title: "online from the best teachers",
+    subtitle: "Upgrade your basic skill to be advance with expert mentors",
+    image: slideImageOne,
+  },
+  {
+    highlightedTitle: "Schedule",
+    title: "your live classes with teachers",
+    subtitle: "Upgrade your basic skill to be advance with expert mentors",
+    image: slideImageTwo,
+  },
+  {
+    highlightedTitle: "You can",
+    title: "learn anytime and anywhere",
+    subtitle: "Upgrade your basic skill to be advance with expert mentors",
+    image: slideImageThree,
+  },
+];
 
 export default function Index() {
-  const handleNavigate = (path: Href) => {
-    router.push(path);
+  const screenDimensions = useWindowDimensions().width;
+  const [stage, setStage] = useState(0);
+
+  const scrollRef = useRef<any>();
+
+  const onMomentumScrollEnd = (e: any) => {
+    const { nativeEvent } = e;
+    const index = Math.round(nativeEvent.contentOffset.x / screenDimensions);
+    if (index !== stage) setStage(index);
   };
+
   return (
-    <View className="flex-1 flex-col justify-between items-center bg-gray-50 p-8 py-10 pt-20 gap-20">
+    <SafeAreaView className="flex justify-center items-center h-full py-10 flex-col bg-gray-950 relative my-auto">
       <StatusBar />
-      <View className="w-full">
-        <Text
-          className="font-Ubuntu text-2xl w-full"
-          style={{ fontFamily: "Ubuntu_400Regular" }}
-        >
-          Bem-vindo ao
-        </Text>
-        <Text
-          className="font-Ubuntu-Bold text-4xl w-full"
-          style={{ fontFamily: "Ubuntu_700Bold" }}
-        >
-          Minhas Listas.
-        </Text>
-      </View>
-      <View className="flex w-full gap-8 items-center">
-        <Image source={logo} alt="" className="size-96" />
-        <Text className="text-center">
-          Aqui você pode criar e gerenciar suas listas de compra de forma fácil
-          e rápida.
-        </Text>
+      <View className="w-full h-5 flex flex-row items-center justify-center gap-2">
+        {stages.map((_, index) =>
+          index >= stage ? (
+            <View
+              key={index}
+              className="size-3 w-7 bg-primary-default rounded-full rounded-r-none last-of-type:rounded-r-full"
+            />
+          ) : (
+            <View key={index} className="size-2 bg-gray-500 rounded-full" />
+          )
+        )}
       </View>
 
-      <View className="flex w-full gap-8 items-center">
-        <Pressable
-          className="w-full h-14 flex items-center justify-center bg-purple-300 rounded-2xl"
-          onPress={() => handleNavigate("/singIn")}
-        >
-          <Text className="text-center font-bold text-xl">Criar conta</Text>
-        </Pressable>
-
-        <Pressable
-          className="w-full h-14 flex items-center justify-center border-2 border-gray-900 rounded-2xl"
-          onPress={() => handleNavigate("/singIn")}
-        >
-          <Text className="text-center font-bold text-xl">Entrar</Text>
-        </Pressable>
-      </View>
-    </View>
+      <ScrollView
+        className="flex-1 h-full w-full truncate"
+        horizontal
+        pagingEnabled
+        nestedScrollEnabled
+        onMomentumScrollEnd={onMomentumScrollEnd}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        ref={scrollRef}
+      >
+        {stages.map((stageData, index) => (
+          <Slide
+            key={index}
+            stageData={stageData}
+            stage={stage}
+            setStage={setStage}
+          />
+        ))}
+      </ScrollView>
+    </SafeAreaView>
   );
 }

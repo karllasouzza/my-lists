@@ -7,6 +7,7 @@ import { useFonts } from "expo-font";
 import { Ubuntu_400Regular, Ubuntu_700Bold } from "@expo-google-fonts/ubuntu";
 
 import "./global.css";
+import "react-native-reanimated";
 
 export default function RootLayout() {
   const [loaded] = useFonts({
@@ -26,8 +27,8 @@ export default function RootLayout() {
 
   return (
     <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false}} />
-      <Stack.Screen name="singIn" options={{ headerShown: false }} />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="auth" options={{ headerShown: false }} />
       {/* <Stack.Screen name="singUp" options={{ headerShown: false }} /> */}
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="+not-found" />
