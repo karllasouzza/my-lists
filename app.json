@@ -13,21 +13,27 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.karllasouzza.elearning"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.karllasouzza.elearning"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
-    "plugins": [["expo-font"]],
-
+    "plugins": [
+      [
+        "expo-font"
+      ],
+      "expo-router"
+    ],
     "experiments": {
       "typedRoutes": true
     }

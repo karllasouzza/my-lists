@@ -9,7 +9,7 @@ import { Ubuntu_400Regular, Ubuntu_700Bold } from "@expo-google-fonts/ubuntu";
 import "./global.css";
 import "react-native-reanimated";
 
-export default function RootLayout() {
+const RootLayout = () => {
   const [loaded] = useFonts({
     Ubuntu_400Regular,
     Ubuntu_700Bold,
@@ -35,3 +35,5 @@ export default function RootLayout() {
     </Stack>
   );
 }
+
+export default RootLayout

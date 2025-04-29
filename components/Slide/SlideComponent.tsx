@@ -17,6 +17,10 @@ const SlideComponent = ({
 }) => {
   return (
     <View className="flex flex-col w-screen">
+      <View className="flex w-full mt-8 items-center">
+        <Image source={stageData.image} alt="" className="flex w-screen" />
+      </View>
+
       <View className="flex w-full px-6 gap-2 mt-10">
         <Text
           className="font-Ubuntu-Bold text-4xl max-w-xs w-full dark:text-gray-50"
@@ -33,10 +37,6 @@ const SlideComponent = ({
         >
           {stageData.subtitle}
         </Text>
-      </View>
-
-      <View className="flex w-full mt-8 items-center">
-        <Image source={stageData.image} alt="" className="flex w-screen" />
       </View>
     </View>
   );
