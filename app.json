@@ -1,38 +1,39 @@
 {
   "expo": {
-    "name": "e-learning",
-    "slug": "e-learning",
+    "name": "myLists",
+    "slug": "myLists",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "e-learning",
+    "icon": "./src/assets/images/icon.png",
+    "scheme": "my-lists",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./src/assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.karllasouzza.elearning"
+      "bundleIdentifier": "com.karllasouzza.my.lists"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.karllasouzza.elearning"
+      "package": "com.karllasouzza.my.lists"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./src/assets/images/favicon.png"
     },
     "plugins": [
       [
         "expo-font"
       ],
-      "expo-router"
+      "expo-router",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true

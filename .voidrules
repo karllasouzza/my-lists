@@ -1,0 +1,140 @@
+# AI Assistant Coding Guidelines
+
+## 📁 Project Structure Rules
+
+1. Follow the established atomic design pattern:
+   - `app/`: Main application screens/pages
+   - `components/`: Shared UI components
+   - `@types/`: TypeScript type declarations
+
+2. Always maintain:
+   - One component per directory
+   - `index.ts` for clean exports
+   - TypeScript definition files
+
+## 🧩 Component Development
+
+1. **TypeScript Compliance**:
+   - Type all props using interfaces or types
+   - Use `React.FC` for functional components
+   - Avoid `any` type
+
+2. **Styling**:
+   - Prefer Tailwind CSS classes (`className`)
+   - Avoid inline styles except for dynamic values
+   - Use utility-first approach (max 4 class groupings)
+
+```typescript
+// Good - Tailwind classes with proper typing
+interface ButtonProps {
+  onPress: () => void;
+  disabled?: boolean;
+}
+
+const Button: React.FC<ButtonProps> = ({ onPress, disabled }) => (
+  <TouchableOpacity 
+    onPress={onPress}
+    disabled={disabled}
+    className={`p-4 rounded-lg ${
+      disabled ? 'bg-gray-300' : 'bg-blue-500'
+    }`}
+  />
+);
+```
+
+3. Component Structure:
+
+```typescript
+// Component template
+import React from 'react';
+import { View, Text } from 'react-native';
+
+interface ComponentNameProps {
+  // Prop definitions
+}
+
+const ComponentName: React.FC<ComponentNameProps> = ({ /* props */ }) => {
+  // State and logic
+  
+  return (
+    <View className="container">
+      {/* JSX content */}
+    </View>
+  );
+};
+
+export default ComponentName;
+```
+
+## 📝 File Management
+
+1. Naming conventions:
+    - PascalCase for components (MyComponent.tsx)
+    - camelCase for utilities (formatText.ts)
+    - kebab-case for asset files (icon-image.png)
+2. File location:
+    - New screens → app/screens/
+    - Shared components → components/
+    - Assets → assets/images/ or assets/fonts/
+  
+## ♻️ Code Quality Standards
+
+1. Keep components small (< 150 lines)
+2. Prefer functional components + hooks
+3. Add JSDoc comments for complex logic:
+
+```typescript
+/**
+ * Formats date to relative time
+ * @param {Date} date - Input date
+ * @returns {string} Relative time string
+ */
+function formatRelativeTime(date: Date): string {
+  // ...
+}
+```
+
+## ⚙️ Configuration Files
+
+1. Follow existing patterns in:
+    - tailwind.config.js
+    - tsconfig.json
+    - babel.config.js
+2. Never modify without explicit instruction
+
+## 🚫 Prohibited Patterns
+
+```typescript
+// Avoid
+<Text style={{ fontSize: 16, color: 'red' }}>Error</Text>
+
+// Avoid
+const MyComponent = (props) => { ... }
+
+// Avoid
+any
+```
+
+## 🔍 Linting Compliance
+
+All code must pass these checks:
+
+   1. TypeScript strict mode
+   2. React Hooks rules
+   3. Tailwind class validation
+
+## 💬 Testing Requirements
+
+1. Create Jest test files for components:
+   - ComponentName.test.tsx
+2. Follow screen/action priority:
+    1. Core functionality
+    2. Edge cases
+    3. UI rendering states
+
+Would you like me to:
+
+- Create this file in your project root
+- Add specific rules for Expo integration
+- Generate starter test files
+- Customize for any additional stack components?
